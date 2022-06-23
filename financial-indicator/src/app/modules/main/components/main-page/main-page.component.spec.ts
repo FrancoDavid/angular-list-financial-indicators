@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { MainRoutingModule } from '../../main-routing.module';
 
 import { MainPageComponent } from './main-page.component';
 
@@ -8,7 +11,12 @@ describe('MainPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainPageComponent ]
+      declarations: [ MainPageComponent ],
+      imports: [
+        CommonModule,
+        MainRoutingModule,
+        SharedModule
+      ]
     })
     .compileComponents();
   });

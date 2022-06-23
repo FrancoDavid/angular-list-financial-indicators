@@ -51,6 +51,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   }
 
   private loadDetailIndicator(): void {
+
     this.financialService.getDetailIndicators(this.indicatorType, this.dateQuery)
       .pipe(takeUntil(this.destroyed$))
       .subscribe({
