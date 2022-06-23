@@ -1,38 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Indicator } from 'src/app/interfaces/indicator';
 import { FinancialService } from 'src/app/services/financial.service';
+
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
   styleUrls: ['./detail-page.component.css']
 })
-export class DetailPageComponent implements OnInit {
+export class DetailPageComponent implements OnInit, OnDestroy {
 
   public indicatorModels: Array<Indicator>;
+  public indicatorType: string;
+
+  private destroyed$: Subject<void>;
+
+  private dateQuery: string;
+
+  public isLoading: boolean;
 
   constructor(private activeRoute: ActivatedRoute,
-              private financialService: FinancialService) {
+              private financialService: FinancialService,
+              private location: Location) {
     this.indicatorModels = [];
+    this.indicatorType = this.activeRoute.snapshot.params.type;
+
+    this.destroyed$ = new Subject();
+
+    this.dateQuery = '';
+    this.isLoading = true;
   }
 
   ngOnInit(): void {
-    
-    const params = this.activeRoute.snapshot.params.type;
+    this.setDateQuery();
+    this.loadDetailIndicator();
+  }
 
-    this.financialService.getDetailIndicators(params, '2010/10').subscribe({
-      next: (response) => {
-        console.log(response);
-        this.indicatorModels = response;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-      complete: () => {
-        console.log('complete');
-      }
-    });
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
+  private loadDetailIndicator(): void {
+    this.financialService.getDetailIndicators(this.indicatorType, this.dateQuery)
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe({
+        next: (response) => {
+          this.indicatorModels = response;
+        },
+        error: (err) => {
+          this.isLoading = false;
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      });
+  }
+
+  private setDateQuery(): void {
+
+    if (this.indicatorType === 'Dollar' || this.indicatorType === 'Euro' || this.indicatorType === 'UF') {
+
+      this.dateQuery = moment().format('YYYY/MM');
+
+    } else {
+
+      this.dateQuery = moment().format('yyyy');
+    }
+  }
+
+  public onClickBack(): void {
+    this.location.back();
   }
 
 }

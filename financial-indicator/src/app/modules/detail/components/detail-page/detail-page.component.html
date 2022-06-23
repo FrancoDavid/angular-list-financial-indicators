@@ -1,3 +1,45 @@
-<h1 class="text-white">DETAIL PAGE</h1>
 
-<p>{{indicatorModels | json}}</p>
+<fieldset [disabled]="isLoading">
+
+    <ng-container *ngIf="!isLoading;else templateLoading">
+        <div class="container my-4">
+
+            <div class="row">
+        
+                <div class="col-sm-12 mb-4">
+                    <h3 class="text-white">
+                        <span (click)="onClickBack()"><i class="fas fa-arrow-left"></i></span>
+                        Indicator Detail:   <strong [textContent]="indicatorType"></strong>
+                    </h3>
+                </div>
+                
+                <div class="col-xs-12 col-lg-7">
+                    <table class="table">
+                        <thead class="text-white">
+                            <tr>
+                                <th scope="col" class="border-top-0">Date <small>dd-mm-yyyy</small></th>
+                                <th scope="col" class="border-top-0">Value <small>$</small></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr *ngFor="let indicator of indicatorModels">
+                                <td>{{ indicator.Fecha | formatDate }}</td>
+                                <td class="text-info font-weight-bold">$ {{ indicator.Valor }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</fieldset>
+
+<ng-template #templateLoading>
+    <div class="container my-4">
+        <app-loading></app-loading>
+    </div>
+</ng-template>
+
+
+
+
