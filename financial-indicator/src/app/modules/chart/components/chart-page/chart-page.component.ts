@@ -1,14 +1,15 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
+
 import { FinancialService } from 'src/app/services/financial.service';
+import { Indicator } from 'src/app/interfaces/indicator';
 
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 
 import { ToastrService } from 'ngx-toastr';
-import { Indicator } from 'src/app/interfaces/indicator';
+import * as moment from 'moment';
 
 
 @Component({
@@ -28,7 +29,6 @@ export class ChartPageComponent implements OnInit {
   private dateQueryEnd: string;
 
   private destroyed$: Subject<void>;
-
 
   constructor(private activeRoute: ActivatedRoute,
               private location: Location,

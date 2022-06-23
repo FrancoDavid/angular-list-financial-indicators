@@ -55,12 +55,12 @@ export class ChartLinealComponent implements OnChanges {
           value: parseFloat(Valor)
         };
       });
-    
+
     } else {
 
       this.chartSeries =  [];
     }
-    
+
   }
 
 }
