@@ -1,0 +1,27 @@
+<div class="data-card">
+
+    <div class="row">
+
+        <div class="col-sm-12 text-right">
+            <i class="fa-solid fa-info-circle fa-lg"></i>
+        </div>
+
+        <div class="col-sm-12 mb-3">
+            <i class="data-icon fa-solid pb-2" [ngClass]="{
+                'fa-dollar-sign': indicatorType == 'Dollar', 
+                'fa-euro-sign': indicatorType == 'Euro', 
+                'fa-money-check-dollar': indicatorType == 'CPI',
+                'fa-money-bill': indicatorType == 'UF',
+                'fa-money-check': indicatorType == 'UTM'
+            }"></i>
+
+            <h5 class="border-top border-dark pt-2" [textContent]="indicatorType"></h5>
+        </div>
+
+        <div class="col-sm-12">
+            <span [routerLink]="['/detail/', indicatorType]">View all indicators <i class="ml-2 pt-1 fa-solid fa-long-arrow-right"></i></span>
+        </div>
+    
+    </div>
+    
+</div>
