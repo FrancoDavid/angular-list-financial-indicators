@@ -1,0 +1,17 @@
+<div class="d-flex d-flex justify-content-center mb-4">
+    <ngx-charts-line-chart
+        [view]="chartViewSize"
+        [scheme]="chartColorScheme"
+        [results]="chartData"
+
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [xAxisLabel]="'Date'"
+        [yAxisLabel]="'Values'"
+        [timeline]="true"
+        [animations]="true">
+    </ngx-charts-line-chart>
+</div>

@@ -1,0 +1,25 @@
+<fieldset [disabled]="isLoading">
+    
+    <div class="container my-4">
+        <ng-container *ngIf="!isLoading;else templateLoading">
+        
+            <div class="row">
+                <div class="col-sm-12 mb-4">
+                    <h3 class="text-white">
+                        <span class="hand-pointer" (click)="onClickBack()"><i class="fas fa-arrow-left"></i></span>
+                        Chart Indicator:   <strong [textContent]="indicatorType"></strong>
+                    </h3>
+                </div>
+            </div>
+        
+            <app-chart-indicator [indicatorType]="indicatorType" [indicatorModels]="indicatorModels"></app-chart-indicator>
+        
+            <app-chart-lineal [nameLegend]="indicatorType" [indicatorModels]="indicatorModels"></app-chart-lineal>
+        </ng-container>
+    </div>
+
+</fieldset>
+
+<ng-template #templateLoading>
+    <app-loading></app-loading>
+</ng-template>

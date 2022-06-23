@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/detail/detail.module').then(module => module.DetailModule)
   },
   {
+    path: 'chart',
+    loadChildren: () => import('./modules/chart/chart.module').then(module => module.ChartModule)
+  },
+  {
     path: '',
     redirectTo: 'main',
     pathMatch: 'full'

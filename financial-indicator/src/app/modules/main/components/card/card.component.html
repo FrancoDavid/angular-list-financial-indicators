@@ -3,7 +3,7 @@
     <div class="row">
 
         <div class="col-sm-12 text-right">
-            <i class="fa-solid fa-info-circle fa-lg"></i>
+            <span class="hand-pointer" [routerLink]="['/chart/', indicatorType]"><i class="fa-solid fa-info-circle fa-lg"></i></span>
         </div>
 
         <div class="col-sm-12 mb-3">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-sm-12">
-            <span [routerLink]="['/detail/', indicatorType]">View all indicators <i class="ml-2 pt-1 fa-solid fa-long-arrow-right"></i></span>
+            <span class="hand-pointer" [routerLink]="['/detail/', indicatorType]">View all indicators <i class="ml-2 pt-1 fa-solid fa-long-arrow-right"></i></span>
         </div>
     
     </div>

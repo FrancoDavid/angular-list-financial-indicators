@@ -1,4 +1,4 @@
 export interface Indicator {
-    Valores: string;
+    Valor: string;
     Fecha: string;
 }

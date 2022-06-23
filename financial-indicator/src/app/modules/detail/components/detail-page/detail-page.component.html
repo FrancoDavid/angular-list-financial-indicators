@@ -1,30 +1,29 @@
 
 <fieldset [disabled]="isLoading">
-
-    <ng-container *ngIf="!isLoading;else templateLoading">
-        <div class="container my-4">
-
-            <div class="row">
-        
-                <div class="col-sm-12 mb-4">
-                    <h3 class="text-white">
-                        <span (click)="onClickBack()"><i class="fas fa-arrow-left"></i></span>
-                        Indicator Detail:   <strong [textContent]="indicatorType"></strong>
-                    </h3>
+    <div class="container my-4">
+        <ng-container *ngIf="!isLoading;else templateLoading">
+    
+                <div class="row">
+            
+                    <div class="col-sm-12 mb-4">
+                        <h3 class="text-white">
+                            <span class="hand-pointer" (click)="onClickBack()"><i class="fas fa-arrow-left"></i></span>
+                            Indicator Detail:   <strong [textContent]="indicatorType"></strong>
+                        </h3>
+                    </div>
+                    
+                    <div class="col-xs-12 col-lg-7">
+                       <app-table-indicator [indicatorModels]="indicatorModels"></app-table-indicator>
+                    </div>
                 </div>
-                
-                <div class="col-xs-12 col-lg-7">
-                   <app-table-indicator [indicatorModels]="indicatorModels"></app-table-indicator>
-                </div>
-            </div>
-        </div>
-    </ng-container>
+
+        </ng-container>
+    </div>
+    
 </fieldset>
 
 <ng-template #templateLoading>
-    <div class="container my-4">
-        <app-loading></app-loading>
-    </div>
+    <app-loading></app-loading>
 </ng-template>
 
 
