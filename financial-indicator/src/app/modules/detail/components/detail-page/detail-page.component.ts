@@ -9,6 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detail-page',
@@ -28,7 +29,8 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   constructor(private activeRoute: ActivatedRoute,
               private financialService: FinancialService,
-              private location: Location) {
+              private location: Location,
+              private toastr: ToastrService) {
     this.indicatorModels = [];
     this.indicatorType = this.activeRoute.snapshot.params.type;
 
@@ -52,10 +54,13 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     this.financialService.getDetailIndicators(this.indicatorType, this.dateQuery)
       .pipe(takeUntil(this.destroyed$))
       .subscribe({
-        next: (response) => {
+        next: (response: Array<Indicator>) => {
           this.indicatorModels = response;
         },
         error: (err) => {
+          this.toastr.error('Please wait a few minutes before you try again.', 'Error');
+          this.onClickBack();
+
           this.isLoading = false;
         },
         complete: () => {
@@ -79,5 +84,4 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   public onClickBack(): void {
     this.location.back();
   }
-
 }

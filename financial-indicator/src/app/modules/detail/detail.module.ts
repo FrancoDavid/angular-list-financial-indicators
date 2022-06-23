@@ -6,10 +6,11 @@ import { DetailPageComponent } from './components/detail-page/detail-page.compon
 import { SharedModule } from '../shared/shared.module';
 import { FinancialService } from 'src/app/services/financial.service';
 import { FormatDatePipe } from './pipes/format-date.pipe';
+import { TableIndicatorComponent } from './components/table-indicator/table-indicator.component';
 
 
 @NgModule({
-  declarations: [DetailPageComponent, FormatDatePipe],
+  declarations: [DetailPageComponent, FormatDatePipe, TableIndicatorComponent],
   imports: [
     CommonModule,
     DetailRoutingModule,

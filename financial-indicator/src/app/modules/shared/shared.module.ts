@@ -4,7 +4,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingComponent } from './components/loading/loading.component';
 
 
-
 @NgModule({
   declarations: [LoadingComponent],
   imports: [

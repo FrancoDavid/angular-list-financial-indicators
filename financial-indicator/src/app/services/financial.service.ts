@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
+
 import { Indicator } from '../interfaces/indicator';
+import { CPI, Dollar, Euro, UF, UTM } from '../interfaces/types-indicator';
 
 @Injectable({
   providedIn: 'root'
@@ -20,41 +24,41 @@ export class FinancialService {
 
   private getDetailDollar(dateQuery: string): Observable<Array<Indicator>> {
 
-    return this.http.get<any>(`${this.apiUrl}/dolar/${dateQuery}?apikey=${this.apiKey}&formato=json`)
+    return this.http.get<Dollar>(`${this.apiUrl}/dolar/${dateQuery}?apikey=${this.apiKey}&formato=json`)
       .pipe(
-        map((response) => response.Dolares)
+        map((response: Dollar) => response.Dolares)
       );
   }
 
   private getDetailEuro(dateQuery: string): Observable<Array<Indicator>> {
 
-    return this.http.get<any>(`${this.apiUrl}/euro/${dateQuery}?apikey=${this.apiKey}&formato=json`)
+    return this.http.get<Euro>(`${this.apiUrl}/euro/${dateQuery}?apikey=${this.apiKey}&formato=json`)
       .pipe(
-        map((response) => response.Euros)
+        map((response: Euro) => response.Euros)
       );
   }
 
   private getDetailCPI(dateQuery: string): Observable<Array<Indicator>> {
 
-    return this.http.get<any>(`${this.apiUrl}/ipc/${dateQuery}?apikey=${this.apiKey}&formato=json`)
+    return this.http.get<CPI>(`${this.apiUrl}/ipc/${dateQuery}?apikey=${this.apiKey}&formato=json`)
       .pipe(
-        map((response) => response.IPCs)
+        map((response: CPI) => response.IPCs)
       );
   }
 
   private getDetailUF(dateQuery: string): Observable<Array<Indicator>> {
 
-    return this.http.get<any>(`${this.apiUrl}/uf/${dateQuery}?apikey=${this.apiKey}&formato=json`)
+    return this.http.get<UF>(`${this.apiUrl}/uf/${dateQuery}?apikey=${this.apiKey}&formato=json`)
       .pipe(
-        map((response) => response.UFs)
+        map((response: UF) => response.UFs)
       );
   }
 
   private getDetailUTM(dateQuery: string): Observable<Array<Indicator>> {
 
-    return this.http.get<any>(`${this.apiUrl}/utm/${dateQuery}?apikey=${this.apiKey}&formato=json`)
+    return this.http.get<UTM>(`${this.apiUrl}/utm/${dateQuery}?apikey=${this.apiKey}&formato=json`)
       .pipe(
-        map((response) => response.UTMs)
+        map((response: UTM) => response.UTMs)
       );
   }
 

@@ -1,0 +1,14 @@
+<table class="table">
+    <thead class="text-white">
+        <tr>
+            <th scope="col" class="border-top-0">Date <small>dd-mm-yyyy</small></th>
+            <th scope="col" class="border-top-0">Value <small>$</small></th>
+        </tr>
+    </thead>
+    <tbody class="bg-white">
+        <tr *ngFor="let indicator of indicatorModels; trackBy: trackByTableIndicator">
+            <td>{{ indicator.Fecha | formatDate }}</td>
+            <td class="text-info font-weight-bold">$ {{ indicator.Valor }}</td>
+        </tr>
+    </tbody>
+</table>
